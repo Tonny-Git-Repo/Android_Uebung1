@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Leistungen</string>
+    <string name="add">Leistung anlegen</string>
+    <string name="stats">Statistik</string>
+    <string name="no_records">Keine Leistungen</string>
+    <string name="module_num">Module Nummer</string>
+    <string name="save">Speichern</string>
+    <string name="semestre">Semestre</string>
+    <string name="sommer_semester">Sommersemester</string>
+    <string name="module_name">Module Name</string>
+</resources>
