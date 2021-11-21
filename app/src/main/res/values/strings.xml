@@ -8,4 +8,8 @@
     <string name="semestre">Semestre</string>
     <string name="sommer_semester">Sommersemester</string>
     <string name="module_name">Module Name</string>
+    <string name="module_num_not_empty">module Nummer darf nicht leer sein</string>
+    <string name="credit_point_not_empty">Kredotpunkte dürfen nicht leer sein!</string>
+    <string name="module_name_not_empty">Modulname darf nicht leer sein!</string>
+    <string name="close">Schliessen</string>
 </resources>

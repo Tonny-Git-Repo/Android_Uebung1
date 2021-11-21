@@ -12,7 +12,15 @@ class RecordDAO private constructor(private val ctx: Context) {
 
     fun findAll(): List<Record> = records.toList()
 
-    fun findById(id: Int): Record? = TODO()
+    fun findById(id: Int): Record {
+        var tempRecord = Record()
+        for(record in records){
+            if(record.id == id){
+                tempRecord = record
+            }
+        }
+        return tempRecord
+    }
 
     /**
      * Ersetzt das übergebene [Record] Objekt mit einem bereits gespeicherten [Record] Objekt mit gleicher id.
@@ -20,7 +28,17 @@ class RecordDAO private constructor(private val ctx: Context) {
      * @param record
      * @return true = update ok, false = kein [Record] Objekt mit gleicher id im Speicher gefunden
      */
-    fun update(record: Record): Boolean = TODO()
+    fun update(record: Record): Boolean {
+
+        record.id?.let {
+            records.remove(findById(it))
+            records.add(record)
+            this.saveRecords()
+            return true
+        }
+
+        return false
+    }
 
     /**
      * Persistiert das übergebene [Record] Objekt und liefert die neue id zurück.
@@ -29,7 +47,13 @@ class RecordDAO private constructor(private val ctx: Context) {
      * @param record
      * @return neue record id
      */
-    fun persist(record: Record): Int = TODO()
+    fun persist(record: Record): Int {
+        record.id = nextId
+        records.add(record)
+        this.saveRecords()
+        return nextId+1
+    }
+
 
     /**
      * Löscht das übergebene [Record] Objekt anhand der id aus dem Speicher.
@@ -37,7 +61,15 @@ class RecordDAO private constructor(private val ctx: Context) {
      * @param record
      * @return true = ok, false = kein [Record] Objekt mit gleicher id im Speicher gefunden
      */
-    fun delete(record: Record): Boolean = TODO()
+    fun delete(record: Record): Boolean {
+        record.id?.let {
+            findById(it)?.let{
+                records.remove(it)
+                return true
+            }
+        }
+        return false
+    }
 
     private fun initRecords(): MutableList<Record> {
         val records = mutableListOf<Record>()
